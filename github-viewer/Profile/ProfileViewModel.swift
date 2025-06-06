@@ -12,11 +12,20 @@ class ProfileViewModel: ObservableObject {
     @Published var user: GitHubUser?
     @Published var repos: [Repository] = []
     @Published var error: GitHubAPIError?
+    
+    private let apiService: GitHubAPIProtocol
+    private let username: String
+    
+    init(apiService: GitHubAPIProtocol,
+         username: String) {
+        self.apiService = apiService
+        self.username = username
+    }
 
-    func loadProfile(for username: String) async {
+    func loadProfile() async {
         do {
-            async let user = GitHubAPI.fetchUser(for: username)
-            async let repos = GitHubAPI.fetchRepos(for: username)
+            async let user = apiService.fetchUser(for: username)
+            async let repos = apiService.fetchRepos(for: username)
 
             self.user = try await user
             self.repos = try await repos

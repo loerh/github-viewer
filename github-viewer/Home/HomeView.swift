@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var username = ""
     @State private var showProfile = false
+    @EnvironmentObject var container: AppContainer
 
     var body: some View {
         NavigationStack {
@@ -31,7 +32,7 @@ struct HomeView: View {
                     .padding(.horizontal)
                     .textFieldStyle(.roundedBorder)
                 
-                NavigationLink(destination: ProfileView(username: username)) {
+                NavigationLink(destination: ProfileView(viewModel: container.makeProfileViewModel(username: username))) {
                     Text("Search")
                         .foregroundStyle(.blue)
                 }

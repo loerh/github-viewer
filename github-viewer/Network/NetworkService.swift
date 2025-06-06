@@ -6,13 +6,13 @@
 //
 import Foundation
 
-protocol GithubAPIProtocol {
+protocol GitHubAPIProtocol {
     func fetchRepos(for username: String) async throws -> [Repository]
     func fetchUser(for username: String) async throws -> GitHubUser
 }
 
-class GitHubAPI {
-    static func fetchRepos(for username: String) async throws -> [Repository] {
+class GitHubAPI: GitHubAPIProtocol {
+    func fetchRepos(for username: String) async throws -> [Repository] {
         let url = URL(string: "https://api.github.com/users/\(username)/repos")!
         let (data, response) = try await URLSession.shared.data(from: url)
 
@@ -30,7 +30,7 @@ class GitHubAPI {
         }
     }
 
-    static func fetchUser(for username: String) async throws -> GitHubUser {
+    func fetchUser(for username: String) async throws -> GitHubUser {
         let url = URL(string: "https://api.github.com/users/\(username)")!
         let (data, response) = try await URLSession.shared.data(from: url)
 

@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    let username: String
-    @StateObject private var viewModel = ProfileViewModel()
+    @StateObject var viewModel : ProfileViewModel
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -43,7 +42,7 @@ struct ProfileView: View {
                 
             }
             .task {
-                await viewModel.loadProfile(for: username)
+                await viewModel.loadProfile()
             }
             .alert(item: $viewModel.error) { error in
                 Alert(title: Text("Error"), message: Text(error.localizedDescription), dismissButton: .default(Text("OK")))
@@ -55,5 +54,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView(username: "loerh")
+    ProfileView(viewModel: ProfileViewModel(apiService: GitHubAPI(), username: "loerh"))
 }

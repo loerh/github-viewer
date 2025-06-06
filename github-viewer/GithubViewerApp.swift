@@ -8,10 +8,15 @@
 import SwiftUI
 
 @main
-struct github_viewerApp: App {
+struct GithubViewerApp: App {
+    
+    private let container = AppContainer()
+    
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(container)
+            
         }
     }
 }
