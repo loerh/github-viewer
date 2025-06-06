@@ -17,6 +17,7 @@ This is a simple app that allows to lookup for a Github user and check its repos
 
 - Use constants or translations for strings.
 - Use coordinator to switch between views
+- Improve unit tests and code coverage
 - ...
 
 

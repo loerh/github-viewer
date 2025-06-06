@@ -13,10 +13,10 @@ import Foundation
 struct GitHubUser: Codable {
     
     enum CodingKeys: String, CodingKey {
-        case login
+        case username = "login"
         case avatarURL = "avatar_url"
     }
     
-    let login: String
+    let username: String
     let avatarURL: URL?
 }

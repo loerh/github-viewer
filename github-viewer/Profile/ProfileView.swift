@@ -28,7 +28,7 @@ struct ProfileView: View {
                         .frame(width: 120, height: 120)
                         .clipShape(Circle())
                         
-                        Text(user.login)
+                        Text(user.username)
                             .font(.title2)
                             .padding(.top, 4)
                         
