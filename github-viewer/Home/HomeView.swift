@@ -7,14 +7,22 @@
 
 import SwiftUI
 
+/**
+ The home view implementation that allows you to look for a Github user.
+ */
 struct HomeView: View {
+    
+    /// Keep track of username text field changes.
     @State private var username = ""
-    @State private var showProfile = false
+    
+    /// The app container to access view models and inherent data.
     @EnvironmentObject var container: AppContainer
 
     var body: some View {
         NavigationStack {
             VStack {
+                
+                // Header/navigation
                 VStack {
                     Text("GitHub Viewer")
                         .padding()
@@ -23,15 +31,17 @@ struct HomeView: View {
                         .foregroundStyle(.gray)
                 }
                 .frame(maxWidth: .infinity)
-                .background(Color(red: 247/255, green: 247/255, blue: 247/255))
+                .background(Color.navigationBackground)
                 .foregroundStyle(.black)
                 
                 Spacer()
                 
+                // Search text field
                 TextField("Username", text: $username)
                     .padding(.horizontal)
                     .textFieldStyle(.roundedBorder)
                 
+                // Search button
                 NavigationLink(destination: ProfileView(viewModel: container.makeProfileViewModel(username: username))) {
                     Text("Search")
                         .foregroundStyle(.blue)

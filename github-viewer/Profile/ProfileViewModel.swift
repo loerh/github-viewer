@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ The view model responsible for business logic of profile view.
+ */
 @MainActor
 class ProfileViewModel: ObservableObject {
     @Published var user: GitHubUser?
@@ -16,12 +19,18 @@ class ProfileViewModel: ObservableObject {
     private let apiService: GitHubAPIProtocol
     private let username: String
     
+    /**
+     Custom initialiser for dependency injection
+     */
     init(apiService: GitHubAPIProtocol,
          username: String) {
         self.apiService = apiService
         self.username = username
     }
 
+    /**
+     Loads profile related data.
+     */
     func loadProfile() async {
         do {
             async let user = apiService.fetchUser(for: username)

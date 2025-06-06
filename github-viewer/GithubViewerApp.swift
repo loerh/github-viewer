@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct GithubViewerApp: App {
     
+    /// Instance of the app container for injection
     private let container = AppContainer()
     
     var body: some Scene {

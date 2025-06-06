@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ Implementation of Github API specific errors.
+ */
 enum GitHubAPIError: Error, LocalizedError {
     case network, notFound
 

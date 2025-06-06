@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ A model representation of a Github user's repository from repos API response.
+ */
 struct Repository: Codable, Identifiable {
     let id: Int
     let name: String

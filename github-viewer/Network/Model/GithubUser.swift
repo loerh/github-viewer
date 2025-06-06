@@ -7,7 +7,16 @@
 
 import Foundation
 
+/**
+ A model representation of a Github user from API response
+ */
 struct GitHubUser: Codable {
+    
+    enum CodingKeys: String, CodingKey {
+        case login
+        case avatarURL = "avatar_url"
+    }
+    
     let login: String
-    let avatar_url: URL?
+    let avatarURL: URL?
 }
